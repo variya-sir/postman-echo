@@ -1,0 +1,496 @@
+{
+	"info": {
+		"_postman_id": "4746f338-4d6f-4f74-b06a-9efff02df470",
+		"name": "C1: Postman Echo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "F1: Using Variables",
+			"item": [
+				{
+					"name": "R1: GET Request",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.log(\"############# R1: Pre-request Script\")",
+									"",
+									"",
+									"//////// Sample Using Variable ////////",
+									"",
+									"// Overide variable values setting at C1",
+									"console.log(\"Before set local variable, scope value at R3:\", pm.variables.get(\"scope\"));",
+									"pm.variables.set(\"scope\", \"R3\");",
+									"console.log(\"After set local variable, scope value at R3:\", pm.variables.get(\"scope\"));",
+									"",
+									"// Dynamic variables",
+									"// https://learning.postman.com/docs/writing-scripts/script-references/variables-list/",
+									"pm.variables.set(\"color\",\"{{$randomColor}}\")",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(\"############# R1: Tests Script\")",
+									"console.log(\"#############################################################################\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.postman-echo.com/get?scope={{scope}}&color={{color}}&uuid={{$guid}}",
+							"protocol": "https",
+							"host": [
+								"www",
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"get"
+							],
+							"query": [
+								{
+									"key": "scope",
+									"value": "{{scope}}"
+								},
+								{
+									"key": "color",
+									"value": "{{color}}"
+								},
+								{
+									"key": "uuid",
+									"value": "{{$guid}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET Scope Color UUID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://www.postman-echo.com/get?scope={{scope}}&color={{color}}&uuid={{$guid}}",
+									"protocol": "https",
+									"host": [
+										"www",
+										"postman-echo",
+										"com"
+									],
+									"path": [
+										"get"
+									],
+									"query": [
+										{
+											"key": "scope",
+											"value": "{{scope}}"
+										},
+										{
+											"key": "color",
+											"value": "{{color}}"
+										},
+										{
+											"key": "uuid",
+											"value": "{{$guid}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 13 Feb 2022 03:38:44 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "592"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"250-k3pjFUp3VxjmEOt9bLAHKYuS6zo\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "set-cookie",
+									"value": "sails.sid=s%3ACzxW5apGYYVyJz-kEEqJCz4pj2ODolII.NwfSiwIMj%2BEtSnrNyNmcTQxn7qDj7awFU2y%2B0YxPSj0; Path=/; HttpOnly"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"args\": {\n        \"scope\": \"R3\",\n        \"color\": \"black\",\n        \"uuid\": \"d70fc4c2-1e88-4763-a242-1b6ec3db8ec2\"\n    },\n    \"headers\": {\n        \"x-forwarded-proto\": \"https\",\n        \"x-forwarded-port\": \"443\",\n        \"host\": \"www.postman-echo.com\",\n        \"x-amzn-trace-id\": \"Root=1-62087d44-70528fb578660a5a1bbb71f0\",\n        \"user-agent\": \"PostmanRuntime/7.29.0\",\n        \"accept\": \"*/*\",\n        \"postman-token\": \"41547456-8512-42e5-81b0-b68c9cdf8116\",\n        \"accept-encoding\": \"gzip, deflate, br\",\n        \"cookie\": \"sails.sid=s%3Aq9nanExEjYhhm-rH9bQCurYo_f-i0T3w.4UOZHyp80MnsI1r5P2D4bI0dTsPoDhLLNkOCnaiGNEw\"\n    },\n    \"url\": \"https://www.postman-echo.com/get?scope=R3&color=black&uuid=d70fc4c2-1e88-4763-a242-1b6ec3db8ec2\"\n}"
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log(\"######## F1: Pre-request Script\")",
+							"",
+							"//////// Sample Using Variable ////////",
+							"//execution order: global -> collection -> environment -> data -> local",
+							"//Note: You can't set a data variable inside Postman because it's pulled from the data file",
+							"",
+							"// Set variables",
+							"pm.globals.set(\"scope\", \"globals\");",
+							"pm.collectionVariables.set(\"scope\", \"collection\");",
+							"pm.environment.set(\"scope\", \"environment\");",
+							"",
+							"// Get variables",
+							"console.log(\"Global Scope value:\", pm.globals.get(\"scope\"))",
+							"console.log(\"Collection Scope value\", pm.collectionVariables.get(\"scope\"))",
+							"console.log(\"Environment Scope value\", pm.environment.get(\"scope\"))",
+							"//access a variable at any scope including local",
+							"console.log(\"Scope value at F1:\", pm.variables.get(\"scope\"));",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log(\"######## F1: Tests Script\")",
+							"",
+							"",
+							"//////// Sample Using Variable ////////",
+							"// Unset Variables",
+							"pm.globals.unset(\"scope\", \"globals\");",
+							"pm.collectionVariables.unset(\"scope\", \"collection\");",
+							"pm.environment.unset(\"scope\", \"environment\");",
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "F2: Writing Scripts",
+			"item": [
+				{
+					"name": "R2: GET Request",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.log(\"############# R2: Pre-request Script\")"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(\"############# R2: Tests Script\")",
+									"console.log(\"#############################################################################\")",
+									"",
+									"//////// Sample Test Scripts ////////",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var Resp = pm.response.json();",
+									"//console.log(Resp)",
+									"pm.test(\"Response body have request name and color\", function () {",
+									"    pm.expect(Resp.args.name).to.eql('bell');",
+									"    pm.expect(Resp.args.color).to.eql('blue');",
+									"});",
+									"",
+									"//////// Extracting Data from Responses and Chaining Requests ////////",
+									"//Local variables don't persist between sessions. Using below line will not work",
+									"//pm.variables.set(\"response-name\", Resp.args.name) ",
+									"//Setting collection/environment variable will work to use in next request",
+									"pm.collectionVariables.set(\"response-name\", Resp.args.name);",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.postman-echo.com/get?name=bell&color=blue",
+							"protocol": "https",
+							"host": [
+								"www",
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"get"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "bell"
+								},
+								{
+									"key": "color",
+									"value": "blue"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET Name Color",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://www.postman-echo.com/get?name=bell&color=blue",
+									"protocol": "https",
+									"host": [
+										"www",
+										"postman-echo",
+										"com"
+									],
+									"path": [
+										"get"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "bell"
+										},
+										{
+											"key": "color",
+											"value": "blue"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 12 Feb 2022 13:10:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "506"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1fa-1wc/Q7iDrq92j5nAdVe/CQw0B9A\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "set-cookie",
+									"value": "sails.sid=s%3A-LUkIfVACiXi-LPofOmi3qOuQTVPKGtu.C7mTkree0HB2TEQklxo3rHi273ELZ8apnSzM7pF16qs; Path=/; HttpOnly"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"args\": {\n        \"name\": \"bell\",\n        \"color\": \"blue\"\n    },\n    \"headers\": {\n        \"x-forwarded-proto\": \"https\",\n        \"x-forwarded-port\": \"443\",\n        \"host\": \"www.postman-echo.com\",\n        \"x-amzn-trace-id\": \"Root=1-6207b1a8-0dfc34497ea92aac68f26c2d\",\n        \"user-agent\": \"PostmanRuntime/7.29.0\",\n        \"accept\": \"*/*\",\n        \"postman-token\": \"c0726452-018f-45bb-a005-2a8bc4ae0c37\",\n        \"accept-encoding\": \"gzip, deflate, br\",\n        \"cookie\": \"sails.sid=s%3A3afBdCylgE89h9ao3_YBL-KzvBqxfglk.QxHBP49MA3esMOlQaP4iiZJnKJsLsOV9mmf%2Fu9W7IXk\"\n    },\n    \"url\": \"https://www.postman-echo.com/get?name=bell&color=blue\"\n}"
+						}
+					]
+				},
+				{
+					"name": "R3: POST Request",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.log(\"############# R3: Pre-request Script\")"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(\"############# R3: Tests Script\")",
+									"console.log(\"#############################################################################\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{response-name}}\",\n    \"color\": \"blue\",\n    \"mood\": \"happy\",\n    \"greeting\": \"Hello! I'm Bell. Have a nice day.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://postman-echo.com/post",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"post"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST Greeting",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"bell\",\n    \"color\": \"blue\",\n    \"mood\": \"happy\",\n    \"greeting\": \"Hello! I'm Bell. Have a nice day.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://postman-echo.com/post",
+									"protocol": "https",
+									"host": [
+										"postman-echo",
+										"com"
+									],
+									"path": [
+										"post"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 12 Feb 2022 13:44:42 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "726"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2d6-e39sOLlCvNThCrXsGzL9c/1zXUc\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "set-cookie",
+									"value": "sails.sid=s%3AFRyQr6irBnO3stW-S5hF7_v2d30MwFKo.ccC4FDfzDV1sEbX9PLom81zV4eUkH7qM2uOzrIKidy0; Path=/; HttpOnly"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"args\": {},\n    \"data\": {\n        \"name\": \"bell\",\n        \"color\": \"blue\",\n        \"mood\": \"happy\",\n        \"greeting\": \"Hello! I'm Bell. Have a nice day.\"\n    },\n    \"files\": {},\n    \"form\": {},\n    \"headers\": {\n        \"x-forwarded-proto\": \"https\",\n        \"x-forwarded-port\": \"443\",\n        \"host\": \"postman-echo.com\",\n        \"x-amzn-trace-id\": \"Root=1-6207b9ca-275aced4055309ea5d25a4e4\",\n        \"content-length\": \"117\",\n        \"content-type\": \"application/json\",\n        \"user-agent\": \"PostmanRuntime/7.29.0\",\n        \"accept\": \"*/*\",\n        \"postman-token\": \"7b984612-8ba6-4aac-8b06-ad5f781f9ba0\",\n        \"accept-encoding\": \"gzip, deflate, br\",\n        \"cookie\": \"sails.sid=s%3AT0vY26iyrsD4raPrxK3RqAUZhwIukFpM.jiO2dyRTbRQ41adf1URENjIzKQbExnYV8FTckmunXUM\"\n    },\n    \"json\": {\n        \"name\": \"bell\",\n        \"color\": \"blue\",\n        \"mood\": \"happy\",\n        \"greeting\": \"Hello! I'm Bell. Have a nice day.\"\n    },\n    \"url\": \"https://postman-echo.com/post\"\n}"
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log(\"######## F2: Pre-request Script\")"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log(\"######## F2: Tests Script\")"
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"console.log(\"### C1: Pre-request Script\")"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"console.log(\"### C1: Tests Script\")"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "response-name",
+			"value": ""
+		}
+	]
+}
