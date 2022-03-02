@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "8a6e7d2e-069c-4a87-a699-814f0604a12d",
+		"name": "C0: Collection Structure",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "F1",
+			"item": [
+				{
+					"name": "R1: Empty Get",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.log(\"############# R1: Tests Script\")",
+									"console.log(\"#############################################################################\")"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(\"############# R1: Tests Script\")",
+									"console.log(\"#############################################################################\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.postman-echo.com/get",
+							"protocol": "https",
+							"host": [
+								"www",
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"get"
+							],
+							"query": [
+								{
+									"key": "scope",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "color",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "uuid",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log(\"######## F1: Pre-request Script\")"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log(\"######## F1: Tests Script\")"
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "F2",
+			"item": [
+				{
+					"name": "R2: Get Greeting",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.log(\"############# R1: Tests Script\")",
+									"console.log(\"#############################################################################\")"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(\"############# R1: Tests Script\")",
+									"console.log(\"#############################################################################\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.postman-echo.com/get?greeting=helloworld",
+							"protocol": "https",
+							"host": [
+								"www",
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"get"
+							],
+							"query": [
+								{
+									"key": "scope",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "color",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "uuid",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "greeting",
+									"value": "helloworld"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log(\"######## F1: Pre-request Script\")"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log(\"######## F1: Tests Script\")"
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"console.log(\"### C0: Pre-request Script\")"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"console.log(\"### C0: Tests Script\")"
+				]
+			}
+		}
+	]
+}
