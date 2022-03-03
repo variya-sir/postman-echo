@@ -129,6 +129,7 @@
 					"",
 					"// Execution Order: global -> collection -> environment -> data -> local",
 					"// Note: You can't set a data variable inside Postman because it's pulled from the data file",
+					"// https://learning.postman.com/docs/sending-requests/variables/",
 					"",
 					"// Set variables",
 					"pm.globals.set(\"scope\", \"globals\");",

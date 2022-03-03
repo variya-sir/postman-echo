@@ -15,7 +15,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"console.log(\"############# R1: Tests Script\")",
+									"console.log(\"############# R1: Pre-request Script\")",
 									"console.log(\"#############################################################################\")"
 								],
 								"type": "text/javascript"
